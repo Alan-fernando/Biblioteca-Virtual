@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioVirtual - Fluxo de Funcionamento</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Segoe UI, Arial, sans-serif; background: #f5f5f5; color: #333; }
+        .page-break { page-break-after: always; }
+        .flow-page { max-width: 900px; margin: 30px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+        .flow-header { background: #1a237e; color: #fff; padding: 18px 28px; }
+        .flow-header h2 { font-size: 16px; font-weight: 600; }
+        .flow-body { padding: 28px; }
+        .cover { text-align: center; padding: 80px 40px; }
+        .cover h1 { font-size: 32px; color: #1a237e; margin-bottom: 8px; }
+        .cover p { font-size: 16px; color: #666; margin-bottom: 4px; }
+        .cover .divider { width: 60px; height: 3px; background: #1a237e; margin: 20px auto; }
+        .flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; padding: 20px 0; }
+        .flow-node { padding: 12px 24px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 500; min-width: 220px; max-width: 320px; }
+        .flow-start, .flow-end { background: #1a237e; color: #fff; border-radius: 24px; padding: 10px 28px; }
+        .flow-process { background: #e8eaf6; border: 2px solid #5c6bc0; color: #1a237e; }
+        .flow-decision-box { background: #fff3e0; border: 2px solid #ff9800; color: #e65100; border-radius: 8px; font-weight: 600; }
+        .flow-io { background: #e8f5e9; border: 2px solid #4caf50; color: #2e7d32; border-radius: 4px; }
+        .flow-action { background: #e3f2fd; border: 2px solid #42a5f5; color: #1565c0; }
+        .flow-middleware { background: #fce4ec; border: 2px solid #ef5350; color: #c62828; border-radius: 24px; }
+        .flow-arrow { width: 2px; height: 28px; background: #666; position: relative; }
+        .flow-arrow::after { content: ''; position: absolute; bottom: -4px; left: -4px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid #666; }
+        .flow-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .flow-branch { display: flex; gap: 40px; align-items: flex-start; justify-content: center; margin: 8px 0; }
+        .flow-branch-col { display: flex; flex-direction: column; align-items: center; gap: 0; }
+        .section-title { font-size: 18px; font-weight: 700; color: #1a237e; margin-bottom: 20px; text-align: center; }
+        .legend { display: flex; gap: 16px; flex-wrap: wrap; padding: 16px; background: #f9f9f9; border-radius: 8px; margin-bottom: 20px; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid; }
+        .flow-notes { margin-top: 20px; padding: 12px 16px; background: #fffde7; border-left: 4px solid #f9a825; border-radius: 0 6px 6px 0; font-size: 13px; }
+        .flow-notes strong { color: #f57f17; }
+        .arch-flow { display: flex; align-items: center; justify-content: center; gap: 0; margin: 20px 0; flex-wrap: wrap; }
+        .arch-box { padding: 14px 20px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 600; min-width: 120px; }
+        .arch-arrow { font-size: 24px; color: #666; padding: 0 8px; }
+        .arch-client { background: #e3f2fd; border: 2px solid #42a5f5; color: #1565c0; }
+        .arch-route { background: #f3e5f5; border: 2px solid #ab47bc; color: #7b1fa2; }
+        .arch-middleware { background: #fce4ec; border: 2px solid #ef5350; color: #c62828; }
+        .arch-controller { background: #e8eaf6; border: 2px solid #5c6bc0; color: #1a237e; }
+        .arch-service { background: #fff3e0; border: 2px solid #ff9800; color: #e65100; }
+        .arch-repository { background: #e8f5e9; border: 2px solid #4caf50; color: #2e7d32; }
+        .arch-data { background: #efebe9; border: 2px solid #8d6e63; color: #4e342e; }
+    </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="flow-page page-break">
+    <div class="flow-body">
+        <div class="cover">
+            <h1>BiblioVirtual</h1>
+            <div class="divider"></div>
+            <p><strong>Fluxo de Funcionamento</strong></p>
+            <p style="margin-top: 40px; font-size: 14px; color: #999;">Planejamento - Etapa 1</p>
+            <p style="font-size: 13px; color: #aaa; margin-top: 8px;">Diagramas de interacao usuario-sistema</p>
+        </div>
+    </div>
+</div>
+
+<!-- FLUXO 1: ARQUITETURA -->
+<div class="flow-page page-break">
+    <div class="flow-header"><h2>Diagrama 1 - Arquitetura em Camadas (Request Flow)</h2></div>
+    <div class="flow-body">
+        <p class="section-title">Fluxo de uma Requisicao no Sistema</p>
+        <div class="arch-flow">
+            <div class="arch-box arch-client">Cliente<br><small>(Browser)</small></div>
+            <div class="arch-arrow">&#8594;</div>
+            <div class="arch-box arch-route">Routes<br><small>(Express Router)</small></div>
+            <div class="arch-arrow">&#8594;</div>
+            <div class="arch-box arch-middleware">Middleware<br><small>(Auth / Admin)</small></div>
+            <div class="arch-arrow">&#8594;</div>
+            <div class="arch-box arch-controller">Controller<br><small>(req, res)</small></div>
+            <div class="arch-arrow">&#8594;</div>
+            <div class="arch-box arch-service">Service<br><small>(Logica)</small></div>
+            <div class="arch-arrow">&#8594;</div>
+            <div class="arch-box arch-repository">Repository<br><small>(Dados)</small></div>
+            <div class="arch-arrow">&#8594;</div>
+            <div class="arch-box arch-data">JSON<br><small>(Persistencia)</small></div>
+        </div>
+        <div style="margin: 24px 0;">
+            <h4 style="color: #1a237e; margin-bottom: 12px;">Responsabilidade de cada camada:</h4>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <tr style="background: #f3e5f5;"><td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>Routes</strong></td><td style="padding: 8px 12px; border: 1px solid #ddd;">Define endpoints e metodos HTTP, direciona para o controller correto</td></tr>
+                <tr style="background: #fce4ec;"><td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>Middleware</strong></td><td style="padding: 8px 12px; border: 1px solid #ddd;">Intercepta a requisicao: verifica sessao (auth), perfil (admin), trata erros</td></tr>
+                <tr style="background: #e8eaf6;"><td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>Controller</strong></td><td style="padding: 8px 12px; border: 1px solid #ddd;">Recebe req/res, extrai dados, chama o Service e retorna resposta (view ou redirect)</td></tr>
+                <tr style="background: #fff3e0;"><td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>Service</strong></td><td style="padding: 8px 12px; border: 1px solid #ddd;">Contem regras de negocio: validacoes, limites, regras de emprestimo</td></tr>
+                <tr style="background: #e8f5e9;"><td style="padding: 8px 12px; border: 1px solid #ddd;"><strong>Repository</strong></td><td style="padding: 8px 12px; border: 1px solid #ddd;">Acesso exclusivo aos dados: leitura/escrita dos arquivos JSON</td></tr>
+            </table>
+        </div>
+        <div class="flow-notes"><strong>Nota:</strong> A resposta percorre o caminho inverso: Repository retorna dados ao Service, que processa e retorna ao Controller, que renderiza a view ou redireciona o usuario.</div>
+    </div>
+</div>
+
+<!-- FLUXO 2: AUTENTICACAO -->
+<div class="flow-page page-break">
+    <div class="flow-header"><h2>Diagrama 2 - Fluxo de Autenticacao (Login / Cadastro)</h2></div>
+    <div class="flow-body">
+        <p class="section-title">Fluxo de Login e Cadastro</p>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color" style="background: #1a237e; border-color: #1a237e;"></div> Inicio/Fim</div>
+            <div class="legend-item"><div class="legend-color" style="background: #e8eaf6; border-color: #5c6bc0;"></div> Processo</div>
+            <div class="legend-item"><div class="legend-color" style="background: #fff3e0; border-color: #ff9800;"></div> Decisao</div>
+            <div class="legend-item"><div class="legend-color" style="background: #e8f5e9; border-color: #4caf50;"></div> Entrada/Saida</div>
+            <div class="legend-item"><div class="legend-color" style="background: #e3f2fd; border-color: #42a5f5;"></div> Acao do sistema</div>
+        </div>
+        <div class="flowchart">
+            <div class="flow-node flow-start">Usuario acessa /auth/login</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-io">Exibe formulario de login (email + senha)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">Usuario preenche dados e submete o formulario</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">POST /auth/login - authController recebe dados</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">authService.login() - busca usuario e compara senha</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-decision-box">Credenciais validas?</div>
+            <div class="flow-branch">
+                <div class="flow-branch-col">
+                    <div class="flow-label">SIM</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-action">Cria sessao (req.session.userId)</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-decision-box">Perfil do usuario?</div>
+                    <div class="flow-branch" style="gap: 20px;">
+                        <div class="flow-branch-col">
+                            <div class="flow-label">Admin</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-action">Redireciona para /admin</div>
+                        </div>
+                        <div class="flow-branch-col">
+                            <div class="flow-label">Leitor</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-action">Redireciona para /</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-branch-col">
+                    <div class="flow-label">NAO</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-io">Exibe mensagem de erro no login</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-process">Usuario tenta novamente</div>
+                </div>
+            </div>
+        </div>
+        <hr style="border: none; border-top: 2px dashed #ddd; margin: 24px 0;">
+        <p style="text-align: center; font-weight: 600; color: #1a237e; margin-bottom: 16px;">Fluxo de Cadastro</p>
+        <div class="flowchart">
+            <div class="flow-node flow-start">Usuario acessa /auth/cadastro</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-io">Exibe formulario (nome, email, senha, confirmar senha)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">Usuario preenche e submete</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">POST /auth/cadastro - authController recebe dados</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-decision-box">Email ja cadastrado?</div>
+            <div class="flow-branch">
+                <div class="flow-branch-col">
+                    <div class="flow-label">NAO</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-action">authService cria hash da senha</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-action">usuarioRepository.create() salva no JSON</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-process">Redireciona para /auth/login com sucesso</div>
+                </div>
+                <div class="flow-branch-col">
+                    <div class="flow-label">SIM</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-io">Exibe erro: Email ja cadastrado</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FLUXO 3: EMPRESTIMO -->
+<div class="flow-page page-break">
+    <div class="flow-header"><h2>Diagrama 3 - Fluxo de Emprestimo e Devolucao</h2></div>
+    <div class="flow-body">
+        <p class="section-title">Fluxo de Emprestimo de Livro</p>
+        <div class="flowchart">
+            <div class="flow-node flow-start">Usuario logado acessa /livros/:id</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-io">Exibe detalhes do livro + botao Emprestar</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">Usuario clica em Emprestar este livro</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-middleware">authMiddleware verifica sessao</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-decision-box">Usuario autenticado?</div>
+            <div class="flow-branch">
+                <div class="flow-branch-col">
+                    <div class="flow-label">SIM</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-process">POST /emprestimos - emprestimoController recebe livroId</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-process">emprestimoService verifica regras de negocio</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-decision-box">Livro disponivel?</div>
+                    <div class="flow-branch">
+                        <div class="flow-branch-col">
+                            <div class="flow-label">SIM</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-action">emprestimoRepository.create() - cria emprestimo</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-action">livroRepository.update() - marca disponivel = false</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-process">Redireciona para /emprestimos/meus</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-end">Emprestimo realizado com sucesso</div>
+                        </div>
+                        <div class="flow-branch-col">
+                            <div class="flow-label">NAO</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-io">Exibe erro: Livro indisponivel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-branch-col">
+                    <div class="flow-label">NAO</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-process">Redireciona para /auth/login</div>
+                </div>
+            </div>
+        </div>
+        <hr style="border: none; border-top: 2px dashed #ddd; margin: 24px 0;">
+        <p style="text-align: center; font-weight: 600; color: #1a237e; margin-bottom: 16px;">Fluxo de Devolucao</p>
+        <div class="flowchart">
+            <div class="flow-node flow-start">Usuario acessa /emprestimos/meus</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-io">Exibe lista de emprestimos ativos</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">Usuario clica em Devolver</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">POST /emprestimos/:id/devolver</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-action">emprestimoService.devolver() - atualiza status e data</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-action">livroRepository.update() - marca disponivel = true</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-end">Devolucao registrada, livro disponivel novamente</div>
+        </div>
+    </div>
+</div>
+
+<!-- FLUXO 4: CONTROLE DE ACESSO -->
+<div class="flow-page page-break">
+    <div class="flow-header"><h2>Diagrama 4 - Controle de Acesso (Middlewares)</h2></div>
+    <div class="flow-body">
+        <p class="section-title">Fluxo de Verificacao de Acesso</p>
+        <div class="flowchart">
+            <div class="flow-node flow-start">Requisicao HTTP chega ao Express</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-process">Express Router identifica a rota</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node flow-decision-box">Rota publica?</div>
+            <div class="flow-branch">
+                <div class="flow-branch-col">
+                    <div class="flow-label">SIM</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-action">Controller processa diretamente</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-end">Resposta enviada ao cliente</div>
+                </div>
+                <div class="flow-branch-col">
+                    <div class="flow-label">NAO (Privada)</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-middleware">authMiddleware executa</div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-node flow-decision-box">req.session.userId existe?</div>
+                    <div class="flow-branch">
+                        <div class="flow-branch-col">
+                            <div class="flow-label">SIM</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-decision-box">Rota requer admin?</div>
+                            <div class="flow-branch">
+                                <div class="flow-branch-col">
+                                    <div class="flow-label">NAO</div>
+                                    <div class="flow-arrow"></div>
+                                    <div class="flow-node flow-action">Controller processa</div>
+                                    <div class="flow-arrow"></div>
+                                    <div class="flow-node flow-end">Resposta enviada</div>
+                                </div>
+                                <div class="flow-branch-col">
+                                    <div class="flow-label">SIM</div>
+                                    <div class="flow-arrow"></div>
+                                    <div class="flow-node flow-middleware">adminMiddleware executa</div>
+                                    <div class="flow-arrow"></div>
+                                    <div class="flow-node flow-decision-box">perfil == admin?</div>
+                                    <div class="flow-branch">
+                                        <div class="flow-branch-col">
+                                            <div class="flow-label">SIM</div>
+                                            <div class="flow-arrow"></div>
+                                            <div class="flow-node flow-action">Controller processa</div>
+                                        </div>
+                                        <div class="flow-branch-col">
+                                            <div class="flow-label">NAO</div>
+                                            <div class="flow-arrow"></div>
+                                            <div class="flow-node flow-io">Redireciona /acesso-negado (403)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flow-branch-col">
+                            <div class="flow-label">NAO</div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-node flow-io">Redireciona para /auth/login</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FLUXO 5: CRUD LIVROS -->
+<div class="flow-page">
+    <div class="flow-header"><h2>Diagrama 5 - CRUD de Livros (Administrador)</h2></div>
+    <div class="flow-body">
+        <p class="section-title">Fluxo de Gestao do Acervo</p>
+        <div style="margin-bottom: 24px;">
+            <h4 style="color: #2e7d32; margin-bottom: 12px;">Cadastrar Livro</h4>
+            <div class="flowchart" style="padding: 10px 0;">
+                <div class="flow-node flow-start">Admin acessa /admin/livros/novo</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-middleware">authMiddleware + adminMiddleware</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-io">Exibe formulario vazio</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-process">Admin preenche dados e submete</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-process">POST /admin/livros - livroController.create()</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-action">livroService valida dados</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-action">livroRepository.create() - salva em livros.json</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-end">Redireciona para /admin/livros com sucesso</div>
+            </div>
+        </div>
+        <div style="margin-bottom: 24px;">
+            <h4 style="color: #1565c0; margin-bottom: 12px;">Editar Livro</h4>
+            <div class="flowchart" style="padding: 10px 0;">
+                <div class="flow-node flow-start">Admin acessa /admin/livros/:id/editar</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-io">Exibe formulario preenchido com dados atuais</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-process">Admin modifica campos e submete</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-process">POST /admin/livros/:id - livroController.update()</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-action">livroRepository.update() - atualiza em livros.json</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-end">Redireciona para /admin/livros com sucesso</div>
+            </div>
+        </div>
+        <div>
+            <h4 style="color: #c62828; margin-bottom: 12px;">Remover Livro</h4>
+            <div class="flowchart" style="padding: 10px 0;">
+                <div class="flow-node flow-start">Admin clica Remover em /admin/livros</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-process">POST /admin/livros/:id/deletar</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node flow-decision-box">Livro tem emprestimo ativo?</div>
+                <div class="flow-branch">
+                    <div class="flow-branch-col">
+                        <div class="flow-label">NAO</div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-node flow-action">livroRepository.delete() - remove do JSON</div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-node flow-end">Livro removido com sucesso</div>
+                    </div>
+                    <div class="flow-branch-col">
+                        <div class="flow-label">SIM</div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-node flow-io">Erro: nao pode remover livro emprestado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

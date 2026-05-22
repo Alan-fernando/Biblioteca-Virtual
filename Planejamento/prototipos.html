@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioVirtual - Prototipos das Telas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Segoe UI, Arial, sans-serif; background: #f5f5f5; color: #333; }
+        .page-break { page-break-after: always; }
+        .proto-page { max-width: 900px; margin: 30px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+        .proto-header { background: #1a237e; color: #fff; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; }
+        .proto-header h2 { font-size: 16px; font-weight: 600; }
+        .proto-header .badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+        .proto-body { padding: 28px; }
+        .wireframe { border: 2px solid #ccc; border-radius: 8px; background: #fafafa; min-height: 400px; }
+        .wire-navbar { background: #2c3e50; color: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 6px 6px 0 0; font-size: 14px; }
+        .wire-navbar .logo { font-weight: bold; font-size: 16px; }
+        .wire-navbar .nav-links { display: flex; gap: 16px; font-size: 13px; }
+        .wire-navbar .nav-links span { opacity: 0.8; }
+        .wire-content { padding: 20px; }
+        .wire-input { border: 1.5px solid #bbb; border-radius: 6px; padding: 10px 14px; margin: 8px 0; display: block; width: 100%; background: #fff; color: #888; font-size: 13px; }
+        .wire-btn { background: #1a237e; color: #fff; border: none; padding: 10px 24px; border-radius: 6px; font-size: 14px; margin: 8px 4px 8px 0; display: inline-block; }
+        .wire-btn.secondary { background: #fff; color: #1a237e; border: 1.5px solid #1a237e; }
+        .wire-btn.success { background: #2e7d32; }
+        .wire-card { border: 1.5px solid #ddd; border-radius: 8px; padding: 16px; margin: 10px 0; background: #fff; }
+        .wire-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+        .wire-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+        .wire-table th, .wire-table td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        .wire-table th { background: #e8eaf6; font-weight: 600; }
+        .wire-table tr:nth-child(even) { background: #f9f9f9; }
+        .wire-placeholder { background: #e0e0e0; border-radius: 4px; height: 120px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 13px; }
+        .wire-search { display: flex; gap: 8px; margin-bottom: 16px; }
+        .wire-search .wire-input { flex: 1; margin: 0; }
+        .wire-badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+        .wire-badge.available { background: #e8f5e9; color: #2e7d32; }
+        .wire-badge.unavailable { background: #fce4ec; color: #c62828; }
+        .wire-badge.active { background: #e3f2fd; color: #1565c0; }
+        .wire-badge.returned { background: #f3e5f5; color: #7b1fa2; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #555; }
+        .center-box { max-width: 400px; margin: 40px auto; }
+        .proto-notes { margin-top: 16px; padding: 12px 16px; background: #fffde7; border-left: 4px solid #f9a825; border-radius: 0 6px 6px 0; font-size: 13px; }
+        .proto-notes strong { color: #f57f17; }
+        .section-title { font-size: 18px; font-weight: 700; color: #1a237e; margin-bottom: 20px; text-align: center; }
+        .cover { text-align: center; padding: 80px 40px; }
+        .cover h1 { font-size: 32px; color: #1a237e; margin-bottom: 8px; }
+        .cover p { font-size: 16px; color: #666; margin-bottom: 4px; }
+        .cover .divider { width: 60px; height: 3px; background: #1a237e; margin: 20px auto; }
+        .error-content { text-align: center; padding: 60px 20px; }
+        .error-content .error-code { font-size: 72px; font-weight: 800; color: #c62828; }
+        .error-content .error-msg { font-size: 18px; color: #666; margin: 12px 0 24px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stat-card { background: #e8eaf6; padding: 16px; border-radius: 8px; text-align: center; }
+        .stat-card .stat-value { font-size: 28px; font-weight: 800; color: #1a237e; }
+        .stat-card .stat-label { font-size: 12px; color: #666; margin-top: 4px; }
+    </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="proto-page page-break">
+    <div class="proto-body">
+        <div class="cover">
+            <h1>BiblioVirtual</h1>
+            <div class="divider"></div>
+            <p><strong>Prototipos das Telas</strong></p>
+            <p style="margin-top: 40px; font-size: 14px; color: #999;">Planejamento - Etapa 1</p>
+            <p style="font-size: 13px; color: #aaa; margin-top: 8px;">Sistema de Biblioteca Virtual</p>
+        </div>
+    </div>
+</div>
+
+<!-- TELA 1: LOGIN -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 1 - Login</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Pagina de Login</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span>Acervo</span><span><strong>Login</strong></span></div></div>
+            <div class="wire-content">
+                <div class="center-box">
+                    <h3 style="text-align:center; margin-bottom: 20px; color: #1a237e;">Entrar na sua conta</h3>
+                    <div class="form-group"><label>Email</label><div class="wire-input">usuario@email.com</div></div>
+                    <div class="form-group"><label>Senha</label><div class="wire-input">********</div></div>
+                    <div class="wire-btn" style="width: 100%; text-align: center;">Entrar</div>
+                    <p style="text-align: center; margin-top: 16px; font-size: 13px; color: #888;">Nao tem conta? <span style="color: #1a237e; font-weight: 600;">Cadastre-se</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /auth/login. Formulario envia POST /auth/login. Link para cadastro redireciona para /auth/cadastro. Sessao iniciada apos login com sucesso.</div>
+    </div>
+</div>
+
+<!-- TELA 2: CADASTRO -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 2 - Cadastro</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Pagina de Cadastro</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span>Acervo</span><span>Login</span></div></div>
+            <div class="wire-content">
+                <div class="center-box">
+                    <h3 style="text-align:center; margin-bottom: 20px; color: #1a237e;">Criar nova conta</h3>
+                    <div class="form-group"><label>Nome completo</label><div class="wire-input">Seu nome</div></div>
+                    <div class="form-group"><label>Email</label><div class="wire-input">seu@email.com</div></div>
+                    <div class="form-group"><label>Senha</label><div class="wire-input">********</div></div>
+                    <div class="form-group"><label>Confirmar senha</label><div class="wire-input">********</div></div>
+                    <div class="wire-btn" style="width: 100%; text-align: center;">Cadastrar</div>
+                    <p style="text-align: center; margin-top: 16px; font-size: 13px; color: #888;">Ja tem conta? <span style="color: #1a237e; font-weight: 600;">Faca login</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /auth/cadastro. Formulario envia POST /auth/cadastro. Apos cadastro, redireciona para login. Perfil padrao: leitor.</div>
+    </div>
+</div>
+
+<!-- TELA 3: HOME -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 3 - Tela Inicial (Home)</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Pagina Inicial</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span><strong>Inicio</strong></span><span>Acervo</span><span>Login</span></div></div>
+            <div class="wire-content">
+                <div style="text-align: center; padding: 30px 0 20px;">
+                    <h2 style="color: #1a237e;">Bem-vindo a BiblioVirtual</h2>
+                    <p style="color: #888; margin-top: 8px;">Sua biblioteca digital. Encontre e empreste livros com facilidade.</p>
+                    <div style="margin-top: 16px;"><div class="wire-btn">Explorar Acervo</div> <div class="wire-btn secondary">Fazer Login</div></div>
+                </div>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                <h3 style="color: #333; margin-bottom: 12px;">Livros em Destaque</h3>
+                <div class="wire-grid">
+                    <div class="wire-card"><div class="wire-placeholder" style="height: 80px; margin-bottom: 10px;">Capa do Livro</div><strong>Dom Casmurro</strong><p style="font-size: 12px; color: #888;">Machado de Assis</p><span class="wire-badge available">Disponivel</span></div>
+                    <div class="wire-card"><div class="wire-placeholder" style="height: 80px; margin-bottom: 10px;">Capa do Livro</div><strong>O Alquimista</strong><p style="font-size: 12px; color: #888;">Paulo Coelho</p><span class="wire-badge unavailable">Emprestado</span></div>
+                    <div class="wire-card"><div class="wire-placeholder" style="height: 80px; margin-bottom: 10px;">Capa do Livro</div><strong>1984</strong><p style="font-size: 12px; color: #888;">George Orwell</p><span class="wire-badge available">Disponivel</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /. Exibe livros em destaque. Se usuario logado, navbar mostra Meus Emprestimos e Sair.</div>
+    </div>
+</div>
+
+<!-- TELA 4: LISTAGEM -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 4 - Listagem de Livros</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Acervo Completo</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span><strong>Acervo</strong></span><span>Login</span></div></div>
+            <div class="wire-content">
+                <h3 style="margin-bottom: 12px;">Acervo de Livros</h3>
+                <div class="wire-search"><div class="wire-input">Buscar por titulo, autor ou categoria...</div><div class="wire-btn">Buscar</div></div>
+                <table class="wire-table">
+                    <thead><tr><th>Titulo</th><th>Autor</th><th>Categoria</th><th>Ano</th><th>Status</th><th>Acao</th></tr></thead>
+                    <tbody>
+                        <tr><td>Dom Casmurro</td><td>Machado de Assis</td><td>Romance</td><td>1899</td><td><span class="wire-badge available">Disponivel</span></td><td><span style="color:#1a237e;">Ver detalhes</span></td></tr>
+                        <tr><td>O Alquimista</td><td>Paulo Coelho</td><td>Ficcao</td><td>1988</td><td><span class="wire-badge unavailable">Emprestado</span></td><td><span style="color:#1a237e;">Ver detalhes</span></td></tr>
+                        <tr><td>1984</td><td>George Orwell</td><td>Distopia</td><td>1949</td><td><span class="wire-badge available">Disponivel</span></td><td><span style="color:#1a237e;">Ver detalhes</span></td></tr>
+                        <tr><td>Clean Code</td><td>Robert C. Martin</td><td>Tecnologia</td><td>2008</td><td><span class="wire-badge available">Disponivel</span></td><td><span style="color:#1a237e;">Ver detalhes</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /livros. Busca via GET /livros/busca com query params. Link Ver detalhes leva a GET /livros/:id.</div>
+    </div>
+</div>
+
+<!-- TELA 5: DETALHE -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 5 - Detalhe do Livro</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Detalhes do Livro</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span>Acervo</span><span>Meus Emprestimos</span><span>Sair</span></div></div>
+            <div class="wire-content">
+                <div style="display: flex; gap: 24px;">
+                    <div style="flex: 0 0 200px;"><div class="wire-placeholder" style="height: 260px;">Capa do Livro</div></div>
+                    <div style="flex: 1;">
+                        <h2 style="color: #1a237e;">Dom Casmurro</h2>
+                        <p style="color: #888; margin: 4px 0 12px;"><strong>Machado de Assis</strong> - Romance, 1899</p>
+                        <span class="wire-badge available">Disponivel para emprestimo</span>
+                        <p style="margin-top: 16px; font-size: 14px; line-height: 1.6; color: #555;">Sinopse do livro. Um dos maiores classicos da literatura brasileira, conta a historia de Bentinho e Capitu com uma narrativa envolvente.</p>
+                        <div style="margin-top: 20px;"><div class="wire-btn success">Emprestar este livro</div> <div class="wire-btn secondary">Voltar ao acervo</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /livros/:id. Botao Emprestar envia POST /emprestimos (requer login). Se nao logado, redireciona para login. Se livro indisponivel, botao desabilitado.</div>
+    </div>
+</div>
+
+<!-- TELA 6: CRIAR/EDITAR LIVRO -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 6 - Criar / Editar Livro</h2><span class="badge">Privada (Admin)</span></div>
+    <div class="proto-body">
+        <p class="section-title">Formulario de Livro</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Painel Admin</span><span>Livros</span><span>Emprestimos</span><span>Sair</span></div></div>
+            <div class="wire-content">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <h3 style="color: #1a237e; margin-bottom: 20px;">Cadastrar Novo Livro</h3>
+                    <div class="form-group"><label>Titulo</label><div class="wire-input">Titulo do livro</div></div>
+                    <div class="form-group"><label>Autor</label><div class="wire-input">Nome do autor</div></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div class="form-group"><label>Categoria</label><div class="wire-input">Selecionar categoria</div></div>
+                        <div class="form-group"><label>Ano de publicacao</label><div class="wire-input">2024</div></div>
+                    </div>
+                    <div class="form-group"><label>Sinopse</label><div class="wire-input" style="height: 80px;">Descricao do livro...</div></div>
+                    <div style="display: flex; gap: 8px; margin-top: 8px;"><div class="wire-btn">Salvar Livro</div> <div class="wire-btn secondary">Cancelar</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Criar: GET /admin/livros/novo e POST /admin/livros. Editar: GET /admin/livros/:id/editar e POST /admin/livros/:id. Requer authMiddleware + adminMiddleware.</div>
+    </div>
+</div>
+
+<!-- TELA 7: MEUS EMPRESTIMOS -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 7 - Meus Emprestimos</h2><span class="badge">Privada (Leitor)</span></div>
+    <div class="proto-body">
+        <p class="section-title">Area do Leitor - Meus Emprestimos</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span>Acervo</span><span><strong>Meus Emprestimos</strong></span><span>Perfil</span><span>Sair</span></div></div>
+            <div class="wire-content">
+                <h3 style="margin-bottom: 16px;">Meus Emprestimos</h3>
+                <h4 style="color: #1565c0; margin-bottom: 8px;">Emprestimos Ativos</h4>
+                <table class="wire-table">
+                    <thead><tr><th>Livro</th><th>Data Emprestimo</th><th>Status</th><th>Acao</th></tr></thead>
+                    <tbody><tr><td>O Alquimista</td><td>18/05/2026</td><td><span class="wire-badge active">Ativo</span></td><td><div class="wire-btn" style="padding: 4px 12px; font-size: 12px;">Devolver</div></td></tr></tbody>
+                </table>
+                <h4 style="color: #7b1fa2; margin: 20px 0 8px;">Historico</h4>
+                <table class="wire-table">
+                    <thead><tr><th>Livro</th><th>Data Emprestimo</th><th>Data Devolucao</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Dom Casmurro</td><td>01/05/2026</td><td>10/05/2026</td><td><span class="wire-badge returned">Devolvido</span></td></tr>
+                        <tr><td>1984</td><td>20/04/2026</td><td>28/04/2026</td><td><span class="wire-badge returned">Devolvido</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /emprestimos/meus. Requer authMiddleware. Botao Devolver envia POST /emprestimos/:id/devolver.</div>
+    </div>
+</div>
+
+<!-- TELA 8: PAINEL ADMIN -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 8 - Painel Administrativo</h2><span class="badge">Privada (Admin)</span></div>
+    <div class="proto-body">
+        <p class="section-title">Dashboard do Administrador</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual <span style="font-size:11px; opacity:0.7;">Admin</span></span><div class="nav-links"><span><strong>Painel</strong></span><span>Livros</span><span>Emprestimos</span><span>Usuarios</span><span>Sair</span></div></div>
+            <div class="wire-content">
+                <h3 style="margin-bottom: 16px;">Painel Administrativo</h3>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-value">47</div><div class="stat-label">Livros no Acervo</div></div>
+                    <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">Emprestimos Ativos</div></div>
+                    <div class="stat-card"><div class="stat-value">85</div><div class="stat-label">Usuarios Cadastrados</div></div>
+                </div>
+                <h4 style="margin-bottom: 8px;">Ultimos Emprestimos</h4>
+                <table class="wire-table">
+                    <thead><tr><th>Usuario</th><th>Livro</th><th>Data</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Maria Silva</td><td>O Alquimista</td><td>18/05/2026</td><td><span class="wire-badge active">Ativo</span></td></tr>
+                        <tr><td>Joao Santos</td><td>Clean Code</td><td>15/05/2026</td><td><span class="wire-badge active">Ativo</span></td></tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 16px;"><div class="wire-btn">Cadastrar Novo Livro</div> <div class="wire-btn secondary">Ver Todos os Emprestimos</div></div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /admin. Requer authMiddleware + adminMiddleware. Dashboard com estatisticas e acoes rapidas.</div>
+    </div>
+</div>
+
+<!-- TELA 9: ERRO 404 -->
+<div class="proto-page page-break">
+    <div class="proto-header"><h2>Tela 9 - Pagina de Erro (404)</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Pagina Nao Encontrada</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span>Acervo</span><span>Login</span></div></div>
+            <div class="wire-content">
+                <div class="error-content">
+                    <div class="error-code">404</div>
+                    <div class="error-msg">Pagina nao encontrada</div>
+                    <p style="color: #999; margin-bottom: 24px;">A pagina que voce esta procurando nao existe ou foi movida.</p>
+                    <div class="wire-btn">Voltar para o Inicio</div>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota catch-all (*). Renderiza views/errors/404.html.</div>
+    </div>
+</div>
+
+<!-- TELA 10: ACESSO NEGADO -->
+<div class="proto-page">
+    <div class="proto-header"><h2>Tela 10 - Acesso Negado (403)</h2><span class="badge">Publica</span></div>
+    <div class="proto-body">
+        <p class="section-title">Acesso Negado</p>
+        <div class="wireframe">
+            <div class="wire-navbar"><span class="logo">BiblioVirtual</span><div class="nav-links"><span>Inicio</span><span>Acervo</span><span>Meus Emprestimos</span><span>Sair</span></div></div>
+            <div class="wire-content">
+                <div class="error-content">
+                    <div class="error-code" style="color: #e65100;">403</div>
+                    <div class="error-msg">Acesso negado</div>
+                    <p style="color: #999; margin-bottom: 24px;">Voce nao tem permissao para acessar esta pagina.<br>Esta area e restrita para administradores.</p>
+                    <div class="wire-btn">Voltar para o Inicio</div>
+                    <div class="wire-btn secondary">Ir para Meus Emprestimos</div>
+                </div>
+            </div>
+        </div>
+        <div class="proto-notes"><strong>Notas:</strong> Rota GET /acesso-negado. adminMiddleware redireciona para esta pagina quando usuario nao-admin tenta acessar rota admin.</div>
+    </div>
+</div>
+
+</body>
+</html>
