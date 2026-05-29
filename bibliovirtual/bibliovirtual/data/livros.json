@@ -6,7 +6,7 @@
     "categoria": "Romance",
     "ano": 1899,
     "sinopse": "Narrado pelo personagem Bentinho, o livro conta a história de seu amor por Capitu e a dúvida que corrói sua vida. Considerado um dos maiores romances da literatura brasileira.",
-    "disponivel": true,
+    "disponivel": false,
     "createdAt": "2025-01-01T00:00:00.000Z"
   },
   {
@@ -26,7 +26,7 @@
     "categoria": "Distopia",
     "ano": 1949,
     "sinopse": "Em um futuro totalitário, Winston Smith trabalha no Ministério da Verdade reescrevendo a história. Uma das obras mais influentes sobre vigilância e controle estatal.",
-    "disponivel": false,
+    "disponivel": true,
     "createdAt": "2025-01-01T00:00:00.000Z"
   },
   {
@@ -36,7 +36,7 @@
     "categoria": "Tecnologia",
     "ano": 2008,
     "sinopse": "Um guia prático para escrever código limpo, legível e de fácil manutenção. Essencial para qualquer desenvolvedor de software.",
-    "disponivel": true,
+    "disponivel": false,
     "createdAt": "2025-01-01T00:00:00.000Z"
   },
   {
@@ -46,7 +46,7 @@
     "categoria": "História",
     "ano": 2011,
     "sinopse": "Uma breve história da humanidade desde os primeiros humanos até a era moderna. Uma obra que questiona o que nos faz humanos.",
-    "disponivel": true,
+    "disponivel": false,
     "createdAt": "2025-01-01T00:00:00.000Z"
   },
   {

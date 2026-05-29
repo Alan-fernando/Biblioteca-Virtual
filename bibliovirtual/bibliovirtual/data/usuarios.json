@@ -14,5 +14,13 @@
     "senha": "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
     "perfil": "leitor",
     "createdAt": "2025-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "28771796-98ab-4fca-9aaf-7e505353dc67",
+    "nome": "Alan Fernando",
+    "email": "alanfernando151@outlook.com",
+    "senha": "$2b$10$CzfaOFLdn5DWbQOq2eL.6OqUiYLp8oBwtpGNtSDnvUa0yidz25Nyi",
+    "perfil": "leitor",
+    "createdAt": "2026-05-29T22:58:45.629Z"
   }
 ]

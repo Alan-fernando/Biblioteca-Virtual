@@ -12,6 +12,30 @@
     "usuarioId": "user-001",
     "livroId": "livro-003",
     "dataEmprestimo": "2026-05-29T22:42:30.476Z",
+    "dataDevolucao": "2026-05-29T22:53:30.361Z",
+    "status": "devolvido"
+  },
+  {
+    "id": "b0ca175f-5615-4664-9e2e-ff3f2c082be5",
+    "usuarioId": "user-001",
+    "livroId": "livro-005",
+    "dataEmprestimo": "2026-05-29T22:53:44.532Z",
+    "dataDevolucao": null,
+    "status": "ativo"
+  },
+  {
+    "id": "83e5fa49-badc-4a45-a9a4-f4fc8742c43a",
+    "usuarioId": "28771796-98ab-4fca-9aaf-7e505353dc67",
+    "livroId": "livro-001",
+    "dataEmprestimo": "2026-05-29T22:59:06.973Z",
+    "dataDevolucao": null,
+    "status": "ativo"
+  },
+  {
+    "id": "e4b13b4a-436f-43fc-b90e-153431c56843",
+    "usuarioId": "28771796-98ab-4fca-9aaf-7e505353dc67",
+    "livroId": "livro-004",
+    "dataEmprestimo": "2026-05-29T22:59:18.733Z",
     "dataDevolucao": null,
     "status": "ativo"
   }
