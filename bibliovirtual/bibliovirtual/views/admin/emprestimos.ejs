@@ -1,0 +1,40 @@
+<% locals.activePage = 'emprestimos'; %>
+<%- include('../partials/header', { title: 'Todos os Empréstimos' }) %>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <h1>📋 Todos os Empréstimos</h1>
+      <p>Histórico completo do sistema.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 3rem;">
+    <div class="card">
+      <div class="table-wrap">
+        <% if (emprestimos.length === 0) { %>
+          <div class="empty-state"><div class="empty-icon">📭</div><p>Nenhum empréstimo registrado.</p></div>
+        <% } else { %>
+          <table>
+            <thead>
+              <tr><th>Usuário</th><th>Livro</th><th>Data Empréstimo</th><th>Data Devolução</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <% emprestimos.forEach(function(e) { %>
+                <tr>
+                  <td><%= e.usuario ? e.usuario.nome : 'N/D' %><br><small style="color:var(--muted)"><%= e.usuario ? e.usuario.email : '' %></small></td>
+                  <td><strong><%= e.livro ? e.livro.titulo : 'N/D' %></strong></td>
+                  <td><%= new Date(e.dataEmprestimo).toLocaleDateString('pt-BR') %></td>
+                  <td><%= e.dataDevolucao ? new Date(e.dataDevolucao).toLocaleDateString('pt-BR') : '—' %></td>
+                  <td><span class="badge <%= e.status === 'ativo' ? 'badge-active' : 'badge-returned' %>"><%= e.status === 'ativo' ? 'Ativo' : 'Devolvido' %></span></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

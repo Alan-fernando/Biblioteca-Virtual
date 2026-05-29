@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' — ' : '' %>BiblioVirtual</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="navbar-brand">
+    <span class="brand-icon">📚</span> BiblioVirtual
+    <% if (usuario && usuario.perfil === 'admin') { %>
+      <span class="admin-tag">Admin</span>
+    <% } %>
+  </a>
+
+  <div class="nav-links">
+    <% if (usuario && usuario.perfil === 'admin') { %>
+      <a href="/admin" class="<%= locals.activePage === 'dashboard' ? 'active' : '' %>">Painel</a>
+      <a href="/admin/livros" class="<%= locals.activePage === 'livros' ? 'active' : '' %>">Livros</a>
+      <a href="/admin/emprestimos" class="<%= locals.activePage === 'emprestimos' ? 'active' : '' %>">Empréstimos</a>
+      <a href="/admin/usuarios" class="<%= locals.activePage === 'usuarios' ? 'active' : '' %>">Usuários</a>
+      <a href="/auth/logout">Sair</a>
+    <% } else if (usuario) { %>
+      <a href="/" class="<%= locals.activePage === 'home' ? 'active' : '' %>">Início</a>
+      <a href="/livros" class="<%= locals.activePage === 'acervo' ? 'active' : '' %>">Acervo</a>
+      <a href="/emprestimos/meus" class="<%= locals.activePage === 'emprestimos' ? 'active' : '' %>">Meus Empréstimos</a>
+      <div class="nav-user">
+        <div class="avatar"><%= usuario.nome.charAt(0).toUpperCase() %></div>
+        <%= usuario.nome.split(' ')[0] %>
+      </div>
+      <a href="/auth/logout">Sair</a>
+    <% } else { %>
+      <a href="/" class="<%= locals.activePage === 'home' ? 'active' : '' %>">Início</a>
+      <a href="/livros" class="<%= locals.activePage === 'acervo' ? 'active' : '' %>">Acervo</a>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/cadastro" class="btn-nav">Cadastrar</a>
+    <% } %>
+  </div>
+</nav>

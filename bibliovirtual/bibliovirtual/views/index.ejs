@@ -1,0 +1,47 @@
+<% locals.activePage = 'home'; %>
+<%- include('partials/header', { title: 'Início' }) %>
+
+<main>
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Sua Biblioteca<br>no Mundo Digital</h1>
+      <p>Explore nosso acervo, encontre sua próxima leitura e realize empréstimos com facilidade.</p>
+      <div class="hero-actions">
+        <a href="/livros" class="btn btn-white">📖 Explorar Acervo</a>
+        <% if (!usuario) { %>
+          <a href="/auth/cadastro" class="btn btn-outline-white">Criar Conta Grátis</a>
+        <% } else { %>
+          <a href="/emprestimos/meus" class="btn btn-outline-white">Meus Empréstimos</a>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">📚 Livros em Destaque</h2>
+      <div class="book-grid">
+        <% livros.forEach(function(livro) { %>
+          <div class="book-card">
+            <div class="book-cover">📖</div>
+            <div class="book-info">
+              <div class="book-title"><%= livro.titulo %></div>
+              <div class="book-author"><%= livro.autor %></div>
+              <span class="badge <%= livro.disponivel ? 'badge-available' : 'badge-unavailable' %>">
+                <%= livro.disponivel ? 'Disponível' : 'Emprestado' %>
+              </span>
+            </div>
+            <div class="book-actions">
+              <a href="/livros/<%= livro.id %>" class="btn btn-outline btn-sm" style="width:100%;justify-content:center;">Ver Detalhes</a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="/livros" class="btn btn-primary">Ver Acervo Completo →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

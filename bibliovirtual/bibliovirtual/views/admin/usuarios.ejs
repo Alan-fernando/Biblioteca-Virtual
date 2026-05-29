@@ -1,0 +1,35 @@
+<% locals.activePage = 'usuarios'; %>
+<%- include('../partials/header', { title: 'Usuários' }) %>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <h1>👥 Usuários Cadastrados</h1>
+      <p>Lista de todos os usuários do sistema.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 3rem;">
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Cadastro</th></tr>
+          </thead>
+          <tbody>
+            <% usuarios.forEach(function(u) { %>
+              <tr>
+                <td><div class="d-flex align-center gap-2"><div style="width:32px;height:32px;border-radius:50%;background:var(--navy);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;flex-shrink:0;"><%= u.nome.charAt(0).toUpperCase() %></div><strong><%= u.nome %></strong></div></td>
+                <td><%= u.email %></td>
+                <td><span class="badge <%= u.perfil === 'admin' ? 'badge-admin' : 'badge-leitor' %>"><%= u.perfil %></span></td>
+                <td><%= new Date(u.createdAt).toLocaleDateString('pt-BR') %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

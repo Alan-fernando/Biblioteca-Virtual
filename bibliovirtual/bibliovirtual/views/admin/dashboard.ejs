@@ -1,0 +1,59 @@
+<% locals.activePage = 'dashboard'; %>
+<%- include('../partials/header', { title: 'Painel Admin' }) %>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <h1>⚙️ Painel Administrativo</h1>
+      <p>Bem-vindo, <%= usuario.nome %>!</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 3rem;">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value"><%= totalLivros %></div>
+        <div class="stat-label">Livros no Acervo</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-value"><%= totalEmprestimosAtivos %></div>
+        <div class="stat-label">Empréstimos Ativos</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-value"><%= totalUsuarios %></div>
+        <div class="stat-label">Usuários Cadastrados</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header-inner">📋 Últimos Empréstimos</div>
+      <div class="table-wrap">
+        <% if (ultimos.length === 0) { %>
+          <div class="empty-state"><p>Nenhum empréstimo registrado ainda.</p></div>
+        <% } else { %>
+          <table>
+            <thead><tr><th>Usuário</th><th>Livro</th><th>Data</th><th>Status</th></tr></thead>
+            <tbody>
+              <% ultimos.forEach(function(e) { %>
+                <tr>
+                  <td><%= e.usuario ? e.usuario.nome : 'N/D' %></td>
+                  <td><%= e.livro ? e.livro.titulo : 'N/D' %></td>
+                  <td><%= new Date(e.dataEmprestimo).toLocaleDateString('pt-BR') %></td>
+                  <td><span class="badge <%= e.status === 'ativo' ? 'badge-active' : 'badge-returned' %>"><%= e.status === 'ativo' ? 'Ativo' : 'Devolvido' %></span></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2" style="margin-top:1.5rem; flex-wrap:wrap;">
+      <a href="/admin/livros/novo" class="btn btn-primary">➕ Cadastrar Novo Livro</a>
+      <a href="/admin/emprestimos" class="btn btn-outline">Ver Todos os Empréstimos</a>
+      <a href="/admin/usuarios" class="btn btn-ghost">👥 Ver Usuários</a>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

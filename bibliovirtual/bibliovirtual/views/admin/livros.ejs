@@ -1,0 +1,52 @@
+<% locals.activePage = 'livros'; %>
+<%- include('../partials/header', { title: 'Gerenciar Livros' }) %>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <div class="d-flex align-center justify-between">
+        <div>
+          <h1>📚 Gerenciar Livros</h1>
+          <p>Cadastre, edite e remova livros do acervo.</p>
+        </div>
+        <a href="/admin/livros/novo" class="btn btn-white" style="color:var(--navy);">➕ Novo Livro</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 3rem;">
+    <% if (sucesso) { %><div class="alert alert-success">✅ <%= sucesso %></div><% } %>
+    <% if (erro) { %><div class="alert alert-danger">⚠️ <%= erro %></div><% } %>
+
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Título</th><th>Autor</th><th>Categoria</th><th>Ano</th><th>Status</th><th>Ações</th></tr>
+          </thead>
+          <tbody>
+            <% livros.forEach(function(livro) { %>
+              <tr>
+                <td><strong><%= livro.titulo %></strong></td>
+                <td><%= livro.autor %></td>
+                <td><%= livro.categoria %></td>
+                <td><%= livro.ano %></td>
+                <td><span class="badge <%= livro.disponivel ? 'badge-available' : 'badge-unavailable' %>"><%= livro.disponivel ? 'Disponível' : 'Emprestado' %></span></td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <a href="/admin/livros/<%= livro.id %>/editar" class="btn btn-outline btn-sm">✏️ Editar</a>
+                    <form action="/admin/livros/<%= livro.id %>/deletar" method="POST" style="display:inline;">
+                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja remover este livro?')">🗑️ Remover</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

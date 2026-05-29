@@ -1,0 +1,83 @@
+<% locals.activePage = 'emprestimos'; %>
+<%- include('../partials/header', { title: 'Meus Empréstimos' }) %>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <h1>📋 Meus Empréstimos</h1>
+      <p>Olá, <%= usuario.nome.split(' ')[0] %>! Gerencie seus empréstimos aqui.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 3rem;">
+    <% if (sucesso) { %>
+      <div class="alert alert-success">✅ <%= sucesso %></div>
+    <% } %>
+    <% if (erro) { %>
+      <div class="alert alert-danger">⚠️ <%= erro %></div>
+    <% } %>
+
+    <h3 style="color:var(--navy);margin-bottom:1rem;">Empréstimos Ativos</h3>
+    <div class="card mb-3">
+      <% if (ativos.length === 0) { %>
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <p>Você não tem nenhum empréstimo ativo.</p>
+          <a href="/livros" class="btn btn-primary mt-2">Explorar Acervo</a>
+        </div>
+      <% } else { %>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Livro</th><th>Data Empréstimo</th><th>Status</th><th>Ação</th></tr>
+            </thead>
+            <tbody>
+              <% ativos.forEach(function(e) { %>
+                <tr>
+                  <td><strong><%= e.livro ? e.livro.titulo : 'Livro não encontrado' %></strong><br><small style="color:var(--muted);"><%= e.livro ? e.livro.autor : '' %></small></td>
+                  <td><%= new Date(e.dataEmprestimo).toLocaleDateString('pt-BR') %></td>
+                  <td><span class="badge badge-active">Ativo</span></td>
+                  <td>
+                    <form action="/emprestimos/<%= e.id %>/devolver" method="POST" style="display:inline;">
+                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirmar devolução?')">Devolver</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </div>
+
+    <h3 style="color:#7b1fa2;margin:2rem 0 1rem;">Histórico de Leituras</h3>
+    <div class="card">
+      <% if (historico.length === 0) { %>
+        <div class="empty-state">
+          <div class="empty-icon">📖</div>
+          <p>Nenhum livro devolvido ainda.</p>
+        </div>
+      <% } else { %>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Livro</th><th>Data Empréstimo</th><th>Data Devolução</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <% historico.forEach(function(e) { %>
+                <tr>
+                  <td><strong><%= e.livro ? e.livro.titulo : 'Livro não encontrado' %></strong></td>
+                  <td><%= new Date(e.dataEmprestimo).toLocaleDateString('pt-BR') %></td>
+                  <td><%= e.dataDevolucao ? new Date(e.dataDevolucao).toLocaleDateString('pt-BR') : '—' %></td>
+                  <td><span class="badge badge-returned">Devolvido</span></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

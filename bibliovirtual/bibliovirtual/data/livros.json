@@ -1,0 +1,62 @@
+[
+  {
+    "id": "livro-001",
+    "titulo": "Dom Casmurro",
+    "autor": "Machado de Assis",
+    "categoria": "Romance",
+    "ano": 1899,
+    "sinopse": "Narrado pelo personagem Bentinho, o livro conta a história de seu amor por Capitu e a dúvida que corrói sua vida. Considerado um dos maiores romances da literatura brasileira.",
+    "disponivel": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "livro-002",
+    "titulo": "O Alquimista",
+    "autor": "Paulo Coelho",
+    "categoria": "Ficção",
+    "ano": 1988,
+    "sinopse": "A história de Santiago, um jovem pastor andaluz que sonha em encontrar um tesouro escondido no Egito. Uma jornada sobre seguir seus sonhos e ouvir o coração.",
+    "disponivel": false,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "livro-003",
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "categoria": "Distopia",
+    "ano": 1949,
+    "sinopse": "Em um futuro totalitário, Winston Smith trabalha no Ministério da Verdade reescrevendo a história. Uma das obras mais influentes sobre vigilância e controle estatal.",
+    "disponivel": false,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "livro-004",
+    "titulo": "Clean Code",
+    "autor": "Robert C. Martin",
+    "categoria": "Tecnologia",
+    "ano": 2008,
+    "sinopse": "Um guia prático para escrever código limpo, legível e de fácil manutenção. Essencial para qualquer desenvolvedor de software.",
+    "disponivel": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "livro-005",
+    "titulo": "Sapiens",
+    "autor": "Yuval Noah Harari",
+    "categoria": "História",
+    "ano": 2011,
+    "sinopse": "Uma breve história da humanidade desde os primeiros humanos até a era moderna. Uma obra que questiona o que nos faz humanos.",
+    "disponivel": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "livro-006",
+    "titulo": "O Hobbit",
+    "autor": "J.R.R. Tolkien",
+    "categoria": "Fantasia",
+    "ano": 1937,
+    "sinopse": "Bilbo Baggins, um hobbit tranquilo, é arrastado em uma aventura épica pelo mago Gandalf e um grupo de anões em busca de um tesouro guardado por um dragão.",
+    "disponivel": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  }
+]

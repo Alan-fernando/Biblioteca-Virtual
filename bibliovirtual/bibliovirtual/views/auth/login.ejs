@@ -1,0 +1,42 @@
+<%- include('../partials/header', { title: 'Login' }) %>
+
+<main class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <h2>📚 BiblioVirtual</h2>
+      <p>Entre na sua conta</p>
+    </div>
+
+    <% if (locals.cadastrado) { %>
+      <div class="alert alert-success">✅ Conta criada com sucesso! Faça login.</div>
+    <% } %>
+    <% if (erro) { %>
+      <div class="alert alert-danger">⚠️ <%= erro %></div>
+    <% } %>
+
+    <form action="/auth/login" method="POST">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="seu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" class="form-control" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;">
+        Entrar →
+      </button>
+    </form>
+
+    <p style="text-align:center; margin-top:1.2rem; font-size:0.88rem; color: var(--muted);">
+      Não tem conta? <a href="/auth/cadastro" style="color:var(--navy);font-weight:600;">Cadastre-se grátis</a>
+    </p>
+
+    <div class="alert alert-info" style="margin-top:1.5rem; font-size:0.82rem;">
+      <div><strong>Demo Admin:</strong> admin@bibliovirtual.com / password</div>
+      <div><strong>Demo Leitor:</strong> joao@email.com / password</div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

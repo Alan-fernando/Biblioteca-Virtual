@@ -1,0 +1,60 @@
+<% locals.activePage = 'acervo'; %>
+<%- include('../partials/header', { title: 'Acervo' }) %>
+
+<main>
+  <div class="page-header">
+    <div class="container">
+      <h1>📚 Acervo de Livros</h1>
+      <p>Explore nossa coleção completa</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 3rem;">
+    <form action="/livros" method="GET" class="search-bar">
+      <input type="text" name="q" class="form-control" placeholder="Buscar por título, autor ou categoria..." value="<%= query %>">
+      <button type="submit" class="btn btn-primary">🔍 Buscar</button>
+      <% if (query) { %><a href="/livros" class="btn btn-ghost">Limpar</a><% } %>
+    </form>
+
+    <% if (livros.length === 0) { %>
+      <div class="card">
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <p>Nenhum livro encontrado para "<strong><%= query %></strong>".</p>
+          <a href="/livros" class="btn btn-outline mt-2">Ver todos os livros</a>
+        </div>
+      </div>
+    <% } else { %>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Categoria</th>
+                <th>Ano</th>
+                <th>Status</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% livros.forEach(function(livro) { %>
+                <tr>
+                  <td><strong><%= livro.titulo %></strong></td>
+                  <td><%= livro.autor %></td>
+                  <td><%= livro.categoria %></td>
+                  <td><%= livro.ano %></td>
+                  <td><span class="badge <%= livro.disponivel ? 'badge-available' : 'badge-unavailable' %>"><%= livro.disponivel ? 'Disponível' : 'Emprestado' %></span></td>
+                  <td><a href="/livros/<%= livro.id %>" class="btn btn-outline btn-sm">Ver detalhes</a></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
