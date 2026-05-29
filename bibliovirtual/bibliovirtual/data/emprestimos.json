@@ -38,5 +38,21 @@
     "dataEmprestimo": "2026-05-29T22:59:18.733Z",
     "dataDevolucao": null,
     "status": "ativo"
+  },
+  {
+    "id": "012d53c0-ae7e-4f1f-8c3a-b4ba3a7105c9",
+    "usuarioId": "user-001",
+    "livroId": "bd4669c1-ebc5-435a-aa33-0e745fd026a7",
+    "dataEmprestimo": "2026-05-29T23:15:16.887Z",
+    "dataDevolucao": null,
+    "status": "ativo"
+  },
+  {
+    "id": "fdb1eb76-4a36-4080-b232-6b2e3476e637",
+    "usuarioId": "28771796-98ab-4fca-9aaf-7e505353dc67",
+    "livroId": "511c6ab6-2f40-423f-b49a-233643e81aea",
+    "dataEmprestimo": "2026-05-29T23:16:28.745Z",
+    "dataDevolucao": null,
+    "status": "ativo"
   }
 ]

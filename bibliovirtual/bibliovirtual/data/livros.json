@@ -58,5 +58,25 @@
     "sinopse": "Bilbo Baggins, um hobbit tranquilo, é arrastado em uma aventura épica pelo mago Gandalf e um grupo de anões em busca de um tesouro guardado por um dragão.",
     "disponivel": true,
     "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "511c6ab6-2f40-423f-b49a-233643e81aea",
+    "titulo": "Futebol lado B",
+    "autor": "Ariel palacios",
+    "categoria": "Futebol",
+    "ano": 2026,
+    "sinopse": "Em  Futebol lado B , o jornalista Ariel Palacios reúne histórias surpreendentes e inusitadas do esporte mais popular do planeta.\r\n\r\nCom sua narrativa brilhante, uma boa dose de humor e o olhar apurado, o autor revela como o futebol já foi responsável por guerras e pacificações, inspirou artistas, estimulou as mais diversas superstições e, é claro, despertou paixões e rivalidades ardorosas ao redor do mundo.\r\n\r\nAo longo da obra, Ariel costura geopolítica, história, arte e cultura em episódios reais que mostram como o futebol não apenas reflete a sociedade, mas também participa ativamente de suas transformações. Entre personagens marcantes, decisões absurdas e acontecimentos que parecem saídos de um roteiro de cinema, surge um mosaico fascinante que expõe o chamado “lado B” do esporte.\r\n\r\nCom prefácio de Marcelo Barreto e posfácio de André Rizek, esta é uma leitura envolvente não só para apaixonados por futebol, mas, principalmente para todos que gostam de boas histórias.",
+    "disponivel": false,
+    "createdAt": "2026-05-29T23:10:43.941Z"
+  },
+  {
+    "id": "bd4669c1-ebc5-435a-aa33-0e745fd026a7",
+    "titulo": "Bíblia NVT 365",
+    "autor": "Gratus",
+    "categoria": "Religioso",
+    "ano": 2023,
+    "sinopse": "A Bíblia365 é a ferramenta ideal para todos que desejam concluir a leitura da Bíblia em um ano.\r\nCom apenas 15 minutos por dia, leia porções selecionadas do Antigo Testamento, do Novo Testamento e dos livros de Salmos e de Provérbios, na sua versão bíblica de preferência.",
+    "disponivel": false,
+    "createdAt": "2026-05-29T23:12:48.067Z"
   }
 ]
